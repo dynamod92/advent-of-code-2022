@@ -1,9 +1,6 @@
-const { readFileSync } = require('fs');
+const syncReadFile = require('../utils/filereader')
 
-const syncReadFile = (filename) => {
-  const foodSupply = readFileSync(filename, 'utf-8');
-
-  const calories = foodSupply.split(/\r?\n/);
+const calories = syncReadFile('./input.txt');
 
   const sums = {}
   let count = 0
@@ -15,7 +12,6 @@ const syncReadFile = (filename) => {
      sums[count] += parseInt(amount)
     else 
      sums[count] = parseInt(amount)
-
    })
 
   const values =  Object.values(sums).map(entry => entry)
@@ -25,7 +21,7 @@ const syncReadFile = (filename) => {
   console.log({total: first + second + third})
 
   return calories;
-}
+
 
 syncReadFile('./input.txt');
 
